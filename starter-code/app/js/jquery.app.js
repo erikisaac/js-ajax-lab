@@ -1,3 +1,5 @@
+var testString = "\" \{";
+console.log(testString);
 
 var catListParsed = [];
 var fullCatList = [];
@@ -30,3 +32,34 @@ function displayCatList () {
 		ULCats.appendChild(LICat);
 	};
 };
+
+$("form").submit(function(event) {
+  
+ 	event.preventDefault();
+ 	console.log("This sould be seen when the submit button is pushed!");
+
+	var catToPostsName = $("input#cat-name").val();
+	console.log(catToPostsName);
+	// var catToPost = "\{\"name\":\"" + catToPostsName + "\"\}";
+	var catToPost = {"name":catToPostsName,"note":"cat-note"};
+	console.log(catToPost);
+	// { 
+	// \"name%34: \"Zom\",
+	// \"note\":\"Warning: This cat eats brains. But is very cute.\"
+	// }"
+
+	// var catToPost = {"name":"cat-name","note":"cat-note"};
+	                // {"name":"Test Cat 7"}
+
+ 	$.ajax({
+		type: "POST",
+		data : JSON.stringify(catToPost),
+		url: "https://ga-cat-rescue.herokuapp.com/api/cats",
+ 		contentType: "application/json"
+	});
+
+});
+
+
+
+
