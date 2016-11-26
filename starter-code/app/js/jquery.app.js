@@ -58,6 +58,12 @@ $("form").submit(function(event) {
  		contentType: "application/json"
 	});
 
+	// To Do: [] Make the list auto append.
+	var ULCats = document.getElementById("cats");
+	var LICat = document.createElement("li");
+	LICat.textContent = catToPostsName;
+	ULCats.appendChild(LICat);
+
 });
 
 
