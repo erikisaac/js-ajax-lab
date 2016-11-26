@@ -1,6 +1,10 @@
+
+var catListParsed = [];
+var fullCatList = [];
+
 var catList = $.get("https://ga-cat-rescue.herokuapp.com/api/cats").done(function(catList){
-	var catListParsed = jQuery.parseJSON(catList);
-	var fullCatList = [];
+	catListParsed = jQuery.parseJSON(catList);
+	// var fullCatList = [];
 	console.log("Cat makeer working.");
 	for (var  i = 0; i < catListParsed.length; i++) {
 		fullCatList.push(catListParsed[i].name);
@@ -10,20 +14,19 @@ var catList = $.get("https://ga-cat-rescue.herokuapp.com/api/cats").done(functio
 	console.log(firstCat);
 	console.log(firstCat.name);
 	console.log(catList);
+	displayCatList();
 });
 
-var ULCats = document.getElementById("cats");
-console.log("This should be the UL cats: " + ULCats);
+function displayCatList () { 
+	var ULCats = document.getElementById("cats");
+	console.log("This should be the UL cats: " + ULCats);
+	console.log("This should be Zom: " + fullCatList[22]);
 
-var LICat = document.createElement("li");
+	for (i = 0; i < fullCatList.length; i++) {
+		var LICat = document.createElement("li");
 
-LICat.textContent = "Test cat!";
-	
-ULCats.appendChild(LICat);
+		LICat.textContent = fullCatList[i];
 
- 	// for (i = 0; i < catList.length; i++ ) {
- 	// 	var li = document.createElement("li");
- 	// 	var t = document.createTextNode(catList[i]);
- 	// 	li.appendChild(t); 
- 	// 	catNode.appendChild(li);
- 	// }
+		ULCats.appendChild(LICat);
+	};
+};
